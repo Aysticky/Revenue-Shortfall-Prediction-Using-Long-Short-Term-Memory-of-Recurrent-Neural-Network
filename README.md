@@ -7,18 +7,23 @@ The shortfall dataset used for this project was obtained from Kaduna Electricity
 Methodology
 
 Step 1: Partition the training and test data
+
 The dataset consists of 744 samples. data was split into train (first 90%) and test (remaining 10%). 670 instances were first trained on the sequence and next 74 instances for testing.
 
 Step 2: Standardize the data for zero mean and unit variance.
+
 For a better fit and to prevent the training from diverging, the training data was standardized to have zero mean and unit variance.
 
 Step 3: Create Xtrain and Ytrain
+
 To forecast the values of future time steps of a sequence, the responses to be the training sequences was specified with values shifted by one-time step. That is, at each time step of the input sequence, the LSTM network learned to predict the value of the next time step.
 
 Step 4: Set parameters to train the network
+
 The LSTM layer was specified to have 200 hidden units, 1 sequence input Layer, and 1 fully connected Layer. The network was trained for 300 epochs with adam solver. Initial learn rate of 0.005 was specified and learn rate were dropped with a multiplying factor of 0.2 after 150 epochs.
 
 Step 5: Make the first prediction and update network with the actual values.
+
 First, the network state was initialized by predicting on XTrain. To make predictions on a new sequence, the network state was reset using resetState. Resetting the network state prevents previous predictions from affecting the predictions on the new data. Then XTest was used instead of YPred in the same for-loop as previous one. All trained data are stored in 'variable1'.
 
 RESULTS
